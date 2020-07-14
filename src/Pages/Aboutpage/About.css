@@ -3,7 +3,7 @@
 }
 
 .page--about {
-  min-height: calc(100vh - 124px);
+  height: 100%;
 
   background-color: #fdfdfd;
 
