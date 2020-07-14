@@ -13,7 +13,7 @@ const About = () => {
           About Our Project
         </h1>
         <div className="about__content">
-          <div className="contactinfo column">
+          <div className="contactinfo">
             <div className="box_outside">
               <div className="box_content flow">
                 <div className="box_title">Contact Info</div>
@@ -36,7 +36,7 @@ const About = () => {
               </div>
             </div>
           </div>
-          <div className="abouttext column flow">
+          <div className="abouttext flow">
             <p className="text--intro about_content">
               The enduring stories of global events are often found in the
               objects left behind. Artifacts and keepsakes help us connect to
