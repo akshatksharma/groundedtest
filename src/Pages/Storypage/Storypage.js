@@ -1,12 +1,26 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { faSquare, faCheckSquare } from "@fortawesome/free-regular-svg-icons";
 import Audioform from "../../Audioform/Audioform.js";
 import Textform from "../../Textform/Textform.js";
+import Modal from "../Thankpage/Modal.js";
 import "./Storypage.css";
 
 const Storypage = (props) => {
   const [usingAudio, setUsingAudio] = useState(true);
+  const [visible, setVisible] = useState(false);
+
+  const getAudioFromVideo = (event) => {
+    const file = event.target.files[0];
+    const url = URL.createObjectURL(file);
+    const audio = new Audio(url);
+    console.log(audio.audioTracks.length);
+  };
+
+  const toggleModal = () => {
+    setVisible(!visible);
+  };
 
   const toggleAudio = () => {
     setUsingAudio(!usingAudio);
@@ -17,6 +31,41 @@ const Storypage = (props) => {
 
   let content = (
     <div className="page page--story" role="region" aria-label="Record story">
+      {visible ? (
+        <Modal
+          hide={toggleModal}
+          bkg={false}
+          title="Recording audio on mobile"
+          body={
+            <div className="flow">
+              <p className="text">
+                Due to current limitations in iOS, we are not able to natively
+                record audio on Apple devices.
+              </p>
+              <p className="text">
+                By clicking the button below, you will be directed to a video
+                record screen where you can record your messsage. Your video
+                feed will not be submitted.
+              </p>
+              <p className="text">We apologize for the inconvenience.</p>
+              <label htmlFor="audioinput">
+                <div className="recorder__button" style={{ marginTop: "20px" }}>
+                  <FontAwesomeIcon icon={faPlay} color="#68D391" size="lg" />
+                  <p className="text bold">Start</p>
+                </div>
+              </label>
+              <input
+                id="audioinput"
+                type="file"
+                accept="audio/*"
+                capture
+                onChange={getAudioFromVideo}
+                style={{ opacity: "0", margin: "0px" }}
+              ></input>
+            </div>
+          }
+        />
+      ) : null}
       <div className="box flow">
         <div className="box__header">
           <h3 className="header__title ">2. Tell your story</h3>
@@ -36,7 +85,7 @@ const Storypage = (props) => {
           </div>
         </div>
         {usingAudio ? (
-          <Audioform dataUpdater={props.updateData} />
+          <Audioform dataUpdater={props.updateData} toggleModal={toggleModal} />
         ) : (
           <Textform dataUpdater={props.updateData} />
         )}

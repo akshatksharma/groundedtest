@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from "react";
+import { isMobile } from "react-device-detect";
 import "./Modal.css";
 
-const Modal = ({ hide, title, body }) => {
+const Modal = ({ hide, bkg, title, body }) => {
   const node = useRef(null);
   const closeButton = useRef(null);
 
@@ -11,7 +12,7 @@ const Modal = ({ hide, title, body }) => {
   };
 
   useEffect(() => {
-    node.current.focus();
+    // node.current.focus();
     document.addEventListener("mousedown", handleClick);
 
     return () => {
@@ -20,9 +21,13 @@ const Modal = ({ hide, title, body }) => {
   }, [handleClick]);
 
   let content = (
-    <div className="modal">
+    <div className={bkg ? "modal" : "modal modal--nobkg"}>
       <div
-        className="modal__content flow"
+        className={
+          isMobile
+            ? "modal__content modal__content--mobile flow"
+            : "modal__content flow"
+        }
         role="alertdialog"
         aria-modal
         tabIndex="0"

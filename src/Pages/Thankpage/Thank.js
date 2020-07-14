@@ -27,6 +27,7 @@ const Thank = () => {
       {visible ? (
         <Modal
           hide={toggleModal}
+          bkg={true}
           title="Share to Instagram"
           body={
             <div className="flow">
