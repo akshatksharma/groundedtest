@@ -2,7 +2,6 @@
 html,
 body {
   background-color: #fff7e9;
-  scroll-snap-type: y mandatory;
 }
 
 div.transition-group {
