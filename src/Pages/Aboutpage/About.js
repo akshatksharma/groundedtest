@@ -1,6 +1,5 @@
 import React from "react";
 import "./About.css";
-import Fade from "react-reveal/Fade";
 
 import sound1 from "../../Samples/Planner.m4a";
 import sound2 from "../../Samples/Mom's_Garden.m4a";
@@ -30,11 +29,7 @@ const About = () => {
                 </div>
                 <div className="contactinfo__number">
                   <div className="box_sub_title">Phone Number:</div>
-                  <a
-                    classname="text"
-                    href="tel:314-312-3524"
-                    rel="noopener noreferrer"
-                  >
+                  <a classname="text" href="tel:314-312-3524">
                     (314) 312-3524
                   </a>
                 </div>
@@ -90,7 +85,7 @@ const About = () => {
             <div className="imageCrop">
               <img
                 src="Picture2.png"
-                alt="A picture of a garden from above on a bright, sunny day. There is a 8 foot by 8 foot garden box with various plantlife including flowers and different vegetables.  "
+                alt="A garden from above on a bright, sunny day. There is a 8 foot by 8 foot garden box with various plantlife including flowers and different vegetables.  "
                 className="audioimage"
                 id="gardenpic"
                 title="Garden box"

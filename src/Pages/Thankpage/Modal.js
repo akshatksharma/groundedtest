@@ -5,6 +5,11 @@ const Modal = ({ hide, title, body }) => {
   const node = useRef(null);
   const closeButton = useRef(null);
 
+  const handleClick = (e) => {
+    if (node.current.contains(e.target)) return;
+    else hide();
+  };
+
   useEffect(() => {
     node.current.focus();
     document.addEventListener("mousedown", handleClick);
@@ -12,12 +17,7 @@ const Modal = ({ hide, title, body }) => {
     return () => {
       document.removeEventListener("mousedown", handleClick);
     };
-  }, []);
-
-  const handleClick = (e) => {
-    if (node.current.contains(e.target)) return;
-    else hide();
-  };
+  }, [handleClick]);
 
   let content = (
     <div className="modal">
@@ -33,7 +33,6 @@ const Modal = ({ hide, title, body }) => {
             className="close"
             ref={closeButton}
             onClick={() => hide()}
-            role="button"
             aria-label="Close dialog"
             tabIndex="0"
           >
