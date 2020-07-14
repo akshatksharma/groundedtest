@@ -1,5 +1,5 @@
 const recordAudio = () =>
-  new Promise(async (resolve) => {
+  new Promise(async (resolve, reject) => {
     if (!navigator.mediaDevices) {
       alert("Media device not supported");
       reject();
