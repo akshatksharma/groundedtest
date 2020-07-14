@@ -1,5 +1,10 @@
 const recordAudio = () =>
   new Promise(async (resolve) => {
+    if (!navigator.mediaDevices) {
+      alert("Media device not supported");
+      reject();
+      return;
+    }
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     const mediaRecorder = new MediaRecorder(stream);
     const audioChunks = [];

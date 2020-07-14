@@ -20,14 +20,17 @@ const Audioform = (props) => {
   const [finished, setFinished] = useState(false);
 
   const start = async () => {
+    try {
+      let recorder = await recordAudio();
+      recorder.start();
+      setRecorder(recorder);
+    } catch {
+      return;
+    }
     setRecording(true);
     setStarted(true);
     setFinished(false);
     setAudioBlob(null);
-
-    let recorder = await recordAudio();
-    recorder.start();
-    setRecorder(recorder);
   };
 
   const pause = () => {
