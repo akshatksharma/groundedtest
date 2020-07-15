@@ -30,10 +30,14 @@ const recordAudio = () =>
     const stop = () =>
       new Promise((resolve) => {
         mediaRecorder.addEventListener("stop", () => {
-          console.log("before stop");
+          console.log("chunks");
           console.log(audioChunks);
           const audioBlob = new Blob(audioChunks);
+          console.log("blob");
+          console.log(audioBlob);
           const audioURL = URL.createObjectURL(audioBlob);
+          console.log("url");
+          console.log(audioURL);
           const audio = new Audio(audioURL);
           const play = () => audio.play();
           resolve({ audioBlob, audioURL, play });

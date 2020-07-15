@@ -154,6 +154,8 @@ const Audioform = (props) => {
   const playback = () => {
     if (audioBlob) {
       const audioURL = URL.createObjectURL(audioBlob);
+      console.log("in playbacc");
+      console.log(audioBlob);
       return (
         <div
           classname="audio__preview"
