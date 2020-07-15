@@ -6,6 +6,8 @@ const recordAudio = () =>
     const mediaRecorder = new MediaRecorder(stream);
     const audioChunks = [];
 
+    console.log("hello");
+
     mediaRecorder.addEventListener("dataavailable", (event) => {
       audioChunks.push(event.data);
     });
