@@ -38,8 +38,14 @@ const Audioform = (props) => {
   };
 
   const pause = () => {
-    if (recording) recorder.pause();
-    else recorder.resume();
+    console.log("pausing");
+    if (recording) {
+      recorder.pause();
+      setRecording(false);
+    } else {
+      recorder.resume();
+      setRecording(true);
+    }
   };
 
   const stop = async () => {
