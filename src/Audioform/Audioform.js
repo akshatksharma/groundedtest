@@ -156,7 +156,7 @@ const Audioform = (props) => {
   const playback = () => {
     if (audioBlob) {
       console.log("in playbacc");
-      audioBlob.audioURL;
+      const audioURL = audioBlob.audioURL;
       return (
         <div
           classname="audio__preview"
