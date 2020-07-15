@@ -34,8 +34,7 @@ const recordAudio = () =>
         mediaRecorder.addEventListener("stop", () => {
           console.log("chunks");
           console.log(audioChunks);
-          const audioBlob = new Blob(audioChunks);
-          audioBlob.type = "audio/wav";
+          const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
           console.log("blob");
           console.log(audioBlob);
           const audioURL = URL.createObjectURL(audioBlob);
