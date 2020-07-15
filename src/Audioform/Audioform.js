@@ -51,7 +51,7 @@ const Audioform = (props) => {
     setStarted(false);
     setFinished(true);
     const audioObj = await recorder.stop();
-    setAudioBlob(audioObj.audioBlob);
+    setAudioBlob(audioObj);
   };
 
   useEffect(() => {
@@ -155,9 +155,8 @@ const Audioform = (props) => {
 
   const playback = () => {
     if (audioBlob) {
-      const audioURL = URL.createObjectURL(audioBlob);
       console.log("in playbacc");
-      console.log(audioBlob);
+      audioBlob.audioURL;
       return (
         <div
           classname="audio__preview"

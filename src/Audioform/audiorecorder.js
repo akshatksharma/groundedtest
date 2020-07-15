@@ -41,7 +41,7 @@ const recordAudio = () =>
           console.log(audioURL);
           const audio = new Audio(audioURL);
           const play = () => audio.play();
-          resolve({ audioBlob, audioURL, play });
+          resolve({ audioURL, play });
         });
         mediaRecorder.stop();
         stream.getTracks().forEach((track) => track.stop());
