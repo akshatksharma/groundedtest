@@ -14,10 +14,9 @@ const recordAudio = () =>
     console.log(mediaRecorder);
     const audioChunks = [];
 
-    console.log("hello");
-
     mediaRecorder.addEventListener("dataavailable", (event) => {
       audioChunks.push(event.data);
+      console.log(audioChunks);
     });
 
     const start = () => {
