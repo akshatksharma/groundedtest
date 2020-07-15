@@ -6,8 +6,12 @@ const recordAudio = () =>
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     let mediaRecorder = null;
 
-    if (isMobileSafari || isSafari) mediaRecorder = new AudioRecorder(stream);
-    else mediaRecorder = new MediaRecorder(stream);
+    if (isMobileSafari || isSafari) {
+      mediaRecorder = new AudioRecorder(stream);
+      console.log("onsafari");
+    } else mediaRecorder = new MediaRecorder(stream);
+
+    console.log(mediaRecorder);
     const audioChunks = [];
 
     console.log("hello");
