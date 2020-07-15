@@ -38,9 +38,6 @@ const Audioform = (props) => {
   };
 
   const pause = () => {
-    setRecording(!recording);
-    setPaused(!paused);
-
     if (recording) recorder.pause();
     else recorder.resume();
   };
