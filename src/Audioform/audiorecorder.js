@@ -4,7 +4,7 @@ import { isMobileSafari, isSafari } from "react-device-detect";
 const recordAudio = () =>
   new Promise(async (resolve, reject) => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    const mediaRecorder;
+    let mediaRecorder = null;
 
     if (isMobileSafari || isSafari) mediaRecorder = new AudioRecorder(stream);
     else mediaRecorder = new MediaRecorder(stream);
