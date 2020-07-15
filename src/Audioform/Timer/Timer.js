@@ -4,8 +4,8 @@ const Timer = (props) => {
   let [secsElapsed, setSecsElapsed] = useState(0);
 
   useEffect(() => {
-    if (props.isRecording && !props.isFinished) setSecsElapsed(0);
-  }, [props.isRecording, props.isFinished]);
+    if (props.isStarted) setSecsElapsed(0);
+  }, [props.isStarted]);
 
   useEffect(() => {
     if (props.isRecording) {
