@@ -23,11 +23,18 @@ const recordAudio = () =>
 
     const start = () => {
       mediaRecorder.start();
+      console.log("start");
     };
 
-    const pause = () => mediaRecorder.pause();
+    const pause = () => {
+      mediaRecorder.pause();
+      console.log("paused");
+    };
 
-    const resume = () => mediaRecorder.resume();
+    const resume = () => {
+      mediaRecorder.resume();
+      console.log("resume");
+    };
 
     const stop = () =>
       new Promise((resolve) => {
