@@ -8,14 +8,14 @@ import Modal from "../Thankpage/Modal.js";
 import "./Storypage.css";
 
 const Storypage = (props) => {
+  const [iosAudio, setiosAudio] = useState(null);
   const [usingAudio, setUsingAudio] = useState(true);
   const [visible, setVisible] = useState(false);
 
   const getAudioFromVideo = (event) => {
     const file = event.target.files[0];
-    const url = URL.createObjectURL(file);
-    const audio = new Audio(url);
-    console.log(audio.audioTracks.length);
+    setiosAudio(file);
+    props.updateData(["audioStory", file]);
   };
 
   const toggleModal = () => {
@@ -85,7 +85,32 @@ const Storypage = (props) => {
           </div>
         </div>
         {usingAudio ? (
-          <Audioform dataUpdater={props.updateData} toggleModal={toggleModal} />
+          <React.Fragment>
+            <Audioform
+              dataUpdater={props.updateData}
+              toggleModal={toggleModal}
+            />
+            {iosAudio ? (
+              <div
+                classname="audio__preview"
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <h4>Preview</h4>
+                <audio
+                  className="audioPlayback"
+                  controls
+                  src={URL.createObjectURL(iosAudio)}
+                  aria-label="audio playback"
+                ></audio>
+              </div>
+            ) : null}
+          </React.Fragment>
         ) : (
           <Textform dataUpdater={props.updateData} />
         )}
