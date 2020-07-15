@@ -18,6 +18,7 @@ const Audioform = (props) => {
 
   const [recording, setRecording] = useState(false);
   const [started, setStarted] = useState(false);
+  const [paused, setPaused] = useState(false);
   const [finished, setFinished] = useState(false);
 
   const isiOS = /iPad|iPhone|iPod/.test(navigator.platform || "");
@@ -39,6 +40,7 @@ const Audioform = (props) => {
 
   const pause = () => {
     setRecording(!recording);
+    setPaused(!paused);
 
     if (recording) recorder.pause();
     else recorder.resume();
@@ -186,6 +188,7 @@ const Audioform = (props) => {
           <Timer
             isRecording={recording}
             isStarted={started}
+            isPaused={paused}
             isFinished={finished}
             timeout={stop}
           />
