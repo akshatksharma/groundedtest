@@ -16,7 +16,6 @@ const recordAudio = () =>
 
     mediaRecorder.addEventListener("dataavailable", (event) => {
       audioChunks.push(event.data);
-      console.log(audioChunks);
     });
 
     const start = () => {
@@ -35,7 +34,7 @@ const recordAudio = () =>
           const audioBlob = new Blob(audioChunks);
           console.log("blob");
           console.log(audioBlob);
-          const audioURL = URL.createObjectURL(audioBlob);
+          const audioURL = URL.createObjectURL(audioChunks);
           console.log("url");
           console.log(audioURL);
           const audio = new Audio(audioURL);
