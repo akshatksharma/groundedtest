@@ -22,7 +22,6 @@ const Audioform = (props) => {
 
   const isiOS = /iPad|iPhone|iPod/.test(navigator.platform || "");
 
-
   const start = async () => {
     try {
       let recorder = await recordAudio();
@@ -68,7 +67,7 @@ const Audioform = (props) => {
   const pauseText = () => (recording ? "Pause" : "Resume");
 
   const startButton = () => {
-    if (isiOS) {
+    if (!isiOS) {
       return (
         <Fragment>
           <div

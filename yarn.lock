@@ -2220,6 +2220,11 @@ attr-accept@^2.0.0:
   resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-2.1.0.tgz#a231a854385d36ff7a99647bb77b33c8a5175aee"
   integrity sha512-sLzVM3zCCmmDtDNhI0i96k6PUztkotSOXqE4kDGQt/6iDi5M+H0srjeF+QC6jN581l4X/Zq3Zu/tgcErEssavg==
 
+audio-recorder-polyfill@^0.3.6:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/audio-recorder-polyfill/-/audio-recorder-polyfill-0.3.6.tgz#8d866541efe41d65d56e1093ee0240f571f427be"
+  integrity sha512-yPFXIQMKfIsHTCiNt8Vm4e0UQbnJxeOaVUStEEkV1satYcxaG02ZNite8lpVMCAXJoNnxF2GHVGfIgukPXvtAw==
+
 autoprefixer@^9.6.1:
   version "9.7.4"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-9.7.4.tgz#f8bf3e06707d047f0641d87aee8cfb174b2a5378"
