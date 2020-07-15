@@ -14,11 +14,10 @@ const recordAudio = () =>
     console.log(mediaRecorder);
     const audioChunks = [];
 
-    // mediaRecorder.addEventListener("dataavailable", (event) => {
-    //   audioChunks.push(event.data);
-    // });
-
-    mediaRecorder.addEventListener("dataavailable", stop);
+    mediaRecorder.addEventListener("dataavailable", (event) => {
+      audioChunks.push(event.data);
+      console.log(audioChunks);
+    });
 
     const start = () => {
       mediaRecorder.start();
@@ -28,27 +27,26 @@ const recordAudio = () =>
 
     const resume = () => mediaRecorder.resume();
 
-    const stop = (event) => {
-      const audioURL = URL.createObjectURL(event.data);
-      return new Promise((resolve) => {
+    const stop = () =>
+      new Promise((resolve) => {
         mediaRecorder.addEventListener("stop", () => {
           console.log("chunks");
           console.log(audioChunks);
-          // const audioBlob = new Blob(audioChunks);
-          // console.log("blob");
-          // console.log(audioBlob);
+          const audioBlob = new Blob(audioChunks);
+          console.log("blob");
+          console.log(audioBlob);
+          const audioURL = URL.createObjectURL(audioBlob);
           console.log("url");
           console.log(audioURL);
           const audio = new Audio(audioURL);
           const play = () => audio.play();
-          resolve({ audioURL, play });
+          resolve({ audioBlob, audioURL, play });
         });
         mediaRecorder.stop();
         stream.getTracks().forEach((track) => track.stop());
-
-        resolve({ start, stop, pause, resume });
       });
-    };
+
+    resolve({ start, stop, pause, resume });
   });
 
 export default recordAudio;
