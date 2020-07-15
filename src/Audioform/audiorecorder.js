@@ -28,15 +28,15 @@ const recordAudio = () =>
 
     const resume = () => mediaRecorder.resume();
 
-    const stop = (event) =>
-      new Promise((resolve) => {
+    const stop = (event) => {
+      const audioURL = URL.createObjectURL(event.data);
+      return new Promise((resolve) => {
         mediaRecorder.addEventListener("stop", () => {
           console.log("chunks");
           console.log(audioChunks);
           // const audioBlob = new Blob(audioChunks);
           // console.log("blob");
           // console.log(audioBlob);
-          const audioURL = URL.createObjectURL(event.data);
           console.log("url");
           console.log(audioURL);
           const audio = new Audio(audioURL);
@@ -45,9 +45,10 @@ const recordAudio = () =>
         });
         mediaRecorder.stop();
         stream.getTracks().forEach((track) => track.stop());
-      });
 
-    resolve({ start, stop, pause, resume });
+        resolve({ start, stop, pause, resume });
+      });
+    };
   });
 
 export default recordAudio;
