@@ -35,6 +35,7 @@ const recordAudio = () =>
           console.log("chunks");
           console.log(audioChunks);
           const audioBlob = new Blob(audioChunks);
+          audioBlob.type = "audio/wav";
           console.log("blob");
           console.log(audioBlob);
           const audioURL = URL.createObjectURL(audioBlob);
