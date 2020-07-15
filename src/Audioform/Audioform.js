@@ -1,4 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
+import { isIOS } from "react-device-detect";
+import AudioRecorder from "audio-recorder-polyfill";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMicrophone,
@@ -19,8 +22,6 @@ const Audioform = (props) => {
   const [recording, setRecording] = useState(false);
   const [started, setStarted] = useState(false);
   const [finished, setFinished] = useState(false);
-
-  const isiOS = /iPad|iPhone|iPod/.test(navigator.platform || "");
 
   const start = async () => {
     try {
@@ -71,7 +72,7 @@ const Audioform = (props) => {
   const pauseText = () => (recording ? "Pause" : "Resume");
 
   const startButton = () => {
-    if (!isiOS) {
+    if (isiOS && AudioRecorder.notSupported) {
       return (
         <Fragment>
           <div
