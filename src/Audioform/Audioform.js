@@ -72,7 +72,7 @@ const Audioform = (props) => {
   const pauseText = () => (recording ? "Pause" : "Resume");
 
   const startButton = () => {
-    if (isiOS && AudioRecorder.notSupported) {
+    if (isIOS && AudioRecorder.notSupported) {
       return (
         <Fragment>
           <div
