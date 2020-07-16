@@ -8,7 +8,6 @@ const recordAudio = () =>
 
     if (isMobileSafari || isSafari) {
       mediaRecorder = new AudioRecorder(stream);
-      console.log("onsafari");
     } else mediaRecorder = new MediaRecorder(stream);
 
     console.log(mediaRecorder);

@@ -77,7 +77,7 @@ const Audioform = (props) => {
         <Fragment>
           <div
             className="recorder__button"
-            onClick={props.toggleModal}
+            // onClick={props.toggleModal}
             style={{ marginTop: "10px" }}
           >
             <FontAwesomeIcon icon={faPlay} color="#68D391" size="lg" />
