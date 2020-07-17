@@ -124,6 +124,12 @@ const About = () => {
               </audio>
             </div>
           </div>
+          <div style={{ margin: "40px auto" }}>
+            <p className="text">
+              Feel free to go <Link to="/">back</Link> and contribute your story
+              as well.
+            </p>
+          </div>
         </div>
       </div>
     </React.Fragment>
