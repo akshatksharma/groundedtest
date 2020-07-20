@@ -54,7 +54,8 @@ const Audioform = (props) => {
     setStarted(false);
     setFinished(true);
     const audioObj = await recorder.stop();
-    setAudioBlob(audioObj);
+    setAudioBlob(audioObj.audioBlob);
+    console.log(audioObj.audioBlob.size);
   };
 
   useEffect(() => {
