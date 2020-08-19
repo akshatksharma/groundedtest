@@ -9,7 +9,7 @@ import {
   faTwitterSquare,
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelopeSquare } from "@fortawesome/free-solid-svg-icons";
-
+import img from "./groundedinstagramstory.jpg";
 import "./Thank.css";
 
 const Thank = () => {
@@ -34,13 +34,18 @@ const Thank = () => {
               <p className="text">
                 Please click{" "}
                 <a
+                  href={img}
+                  className="coollink"
+                  download="groundedinstagramstory.jpg"
                   id="graphiclink"
                   aria-labelledby="graphiclink"
-                  href="//google.com"
+                  to="/src/Pages/Thankpage/groundedinstagramstory.jpg"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   here
-                </a>{" "}
-                to download a graphic to share on your Instagram story.{" "}
+                </a>
+                {" to download a graphic to share on your Instagram story."}
               </p>
               <p className="text">
                 Don’t forget to tag us using @groundedarchive and
@@ -65,7 +70,7 @@ const Thank = () => {
               Follow the link below to complete a brief survey.
             </p>
             <a
-              className="text"
+              className="coollink coollink--yellow"
               target="_blank"
               rel="noopener noreferrer"
               href="https://forms.gle/WVSSmgzmCs6nhWaz9"
