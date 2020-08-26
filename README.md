@@ -1,7 +1,7 @@
 
 # About
 
-This is a repository for the frontend of Grounded: The Pandemic Archive. It is a site that allows people to record their own stories during the COVID-19 pandemic, and store them to be viewed at a later date. I worked on it for Design for America while in a group of 5 and was the lead for the frontend of the site.
+This is a repository for the Front-end of Grounded: The Pandemic Archive. It is a site that allows people to record their own stories during the COVID-19 pandemic, and store them to be viewed at a later date. I worked on it for Design for America while in a group of 5 and was the lead for the Front-end of the site.
 
 The full site is hosted on an AWS EC2, and can be found [here](https://groundedarchive.com/).
 
