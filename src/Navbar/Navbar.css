@@ -13,8 +13,11 @@
   background-color: #ffc259;
 }
 
-.headerbar a {
+.headerbar > a {
   padding: 10px;
+}
+
+.headerbar a {
   letter-spacing: 0.5px;
   line-height: 1.2;
   font-weight: 700;
@@ -36,4 +39,27 @@
 
 .headerbar__title {
   text-transform: uppercase;
+}
+
+.headerbar__group {
+  display: flex;
+}
+
+.headerbar__group > a {
+  margin-right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerbar__group > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 32px;
+  height: 32px;
+  background: #201E1F;
+  color: #F6C36B;
+  border-radius: 50%;
 }

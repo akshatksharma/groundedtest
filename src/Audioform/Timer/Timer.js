@@ -4,14 +4,13 @@ const Timer = (props) => {
   let [secsElapsed, setSecsElapsed] = useState(0);
 
   useEffect(() => {
-    if (props.isRecording) setSecsElapsed(0);
-  }, [props.isRecording]);
+    if (props.isStarted) setSecsElapsed(0);
+  }, [props.isStarted]);
 
   useEffect(() => {
     if (props.isRecording) {
       let interval = setInterval(() => {
         if (secsElapsed === 299) {
-          console.log("stopping");
           props.timeout();
         }
         setSecsElapsed((secsElapsed += 1));

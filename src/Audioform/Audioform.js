@@ -1,4 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
+import { isIOS } from "react-device-detect";
+import AudioRecorder from "audio-recorder-polyfill";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMicrophone,
@@ -14,14 +17,11 @@ import "./Audioform.css";
 
 const Audioform = (props) => {
   const [recorder, setRecorder] = useState(null);
-  const [audioBlob, setAudioBlob] = useState(null);
+  const [audioObj, setAudioObj] = useState(null);
 
   const [recording, setRecording] = useState(false);
   const [started, setStarted] = useState(false);
   const [finished, setFinished] = useState(false);
-
-  const isiOS = /iPad|iPhone|iPod/.test(navigator.platform || "");
-
 
   const start = async () => {
     try {
@@ -35,14 +35,17 @@ const Audioform = (props) => {
     setRecording(true);
     setStarted(true);
     setFinished(false);
-    setAudioBlob(null);
+    setAudioObj(null);
   };
 
   const pause = () => {
-    setRecording(!recording);
-
-    if (recording) recorder.pause();
-    else recorder.resume();
+    if (recording) {
+      recorder.pause();
+      setRecording(false);
+    } else {
+      recorder.resume();
+      setRecording(true);
+    }
   };
 
   const stop = async () => {
@@ -50,12 +53,13 @@ const Audioform = (props) => {
     setStarted(false);
     setFinished(true);
     const audioObj = await recorder.stop();
-    setAudioBlob(audioObj.audioBlob);
+
+    setAudioObj(audioObj);
   };
 
   useEffect(() => {
-    if (audioBlob) props.dataUpdater(["audioStory", audioBlob]);
-  }, [props, audioBlob]);
+    if (audioObj) props.dataUpdater(["audioStory", audioObj.audioBlob]);
+  }, [props, audioObj]);
 
   const recordText = () => {
     let text = recording ? "Recording..." : null;
@@ -68,12 +72,12 @@ const Audioform = (props) => {
   const pauseText = () => (recording ? "Pause" : "Resume");
 
   const startButton = () => {
-    if (isiOS) {
+    if (isIOS && AudioRecorder.notSupported) {
       return (
         <Fragment>
           <div
             className="recorder__button"
-            onClick={props.toggleModal}
+            // onClick={props.toggleModal}
             style={{ marginTop: "10px" }}
           >
             <FontAwesomeIcon icon={faPlay} color="#68D391" size="lg" />
@@ -153,8 +157,8 @@ const Audioform = (props) => {
   };
 
   const playback = () => {
-    if (audioBlob) {
-      const audioURL = URL.createObjectURL(audioBlob);
+    if (audioObj) {
+      const audioURL = audioObj.audioURL;
       return (
         <div
           classname="audio__preview"

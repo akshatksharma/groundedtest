@@ -1,12 +1,18 @@
+import AudioRecorder from "audio-recorder-polyfill";
+import mpegEncoder from "audio-recorder-polyfill/mpeg-encoder";
+import { isMobileSafari, isSafari } from "react-device-detect";
+
 const recordAudio = () =>
   new Promise(async (resolve, reject) => {
-    if (!navigator.mediaDevices) {
-      alert("Media device not supported");
-      reject();
-      return;
-    }
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    const mediaRecorder = new MediaRecorder(stream);
+    let mediaRecorder = null;
+
+    if (isMobileSafari || isSafari) {
+      AudioRecorder.encoder = mpegEncoder;
+      AudioRecorder.prototype.mimeType = "audio/mpeg";
+      mediaRecorder = new AudioRecorder(stream);
+    } else mediaRecorder = new MediaRecorder(stream);
+
     const audioChunks = [];
 
     mediaRecorder.addEventListener("dataavailable", (event) => {
@@ -17,15 +23,21 @@ const recordAudio = () =>
       mediaRecorder.start();
     };
 
-    const pause = () => mediaRecorder.pause();
+    const pause = () => {
+      mediaRecorder.pause();
+    };
 
-    const resume = () => mediaRecorder.resume();
+    const resume = () => {
+      mediaRecorder.resume();
+    };
 
     const stop = () =>
       new Promise((resolve) => {
         mediaRecorder.addEventListener("stop", () => {
-          const audioBlob = new Blob(audioChunks);
+          const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
+
           const audioURL = URL.createObjectURL(audioBlob);
+
           const audio = new Audio(audioURL);
           const play = () => audio.play();
           resolve({ audioBlob, audioURL, play });
