@@ -15,7 +15,8 @@ import Thank from "./Pages/Thankpage/Thank.js";
 import Modal from "./Pages/Thankpage/Modal";
 
 const App = () => {
-  const [hidden, setHidden] = useState(false);
+  const [suggestionsHidden, setSuggestionsHidden] = useState(false);
+  const [alertHidden, setAlertHidden] = useState(false);
 
   let formData = new FormData();
 
@@ -43,8 +44,13 @@ const App = () => {
 
   let location = useLocation();
 
-  let hidePage = () => {
-    setHidden(!hidden);
+  let hideSuggestions = () => {
+    setSuggestionsHidden(!suggestionsHidden);
+    console.log("meep");
+  };
+
+  let hideAlert = () => {
+    setAlertHidden(!alertHidden);
     console.log("meep");
   };
 
@@ -59,21 +65,21 @@ const App = () => {
           <div className="route-section">
             <Switch>
               <Route exact path="/about">
-                <Navbar setHidden={hidePage} />
+                <Navbar setHidden={hideAlert} />
                 <About />
                 <Footer />
               </Route>
               <Route exact path="/thank">
-                <Navbar setHidden={hidePage} />
+                <Navbar setHidden={hideAlert} />
                 <Thank />
                 <Footer />
               </Route>
               <Route exact path="/">
-                <Navbar setHidden={hidePage} />
+                <Navbar setHidden={hideAlert} />
                 <main>
-                  {hidden && (
+                  {alertHidden && (
                     <Modal
-                      hide={hidePage}
+                      hide={hideAlert}
                       title="Please note"
                       style={{
                         body: {
@@ -102,26 +108,30 @@ const App = () => {
                   )}
                   <section
                     className={
-                      hidden ? "page__container hidden" : "page__container"
+                      alertHidden || suggestionsHidden
+                        ? "page__container hidden"
+                        : "page__container"
                     }
                   >
                     <Intropage />
                   </section>
                   <section
                     className={
-                      hidden ? "page__container hidden" : "page__container"
+                      alertHidden ? "page__container hidden" : "page__container"
                     }
                   >
                     <Fade>
                       <Objectpage
                         updateData={updateData}
-                        setHidden={hidePage}
+                        setHidden={hideSuggestions}
                       />
                     </Fade>
                   </section>
                   <section
                     className={
-                      hidden ? "page__container hidden" : "page__container"
+                      alertHidden || suggestionsHidden
+                        ? "page__container hidden"
+                        : "page__container"
                     }
                   >
                     <Fade>
@@ -130,7 +140,9 @@ const App = () => {
                   </section>
                   <section
                     className={
-                      hidden ? "page__container hidden" : "page__container"
+                      alertHidden || suggestionsHidden
+                        ? "page__container hidden"
+                        : "page__container"
                     }
                   >
                     <Fade>
