@@ -12,6 +12,7 @@ import Storypage from "./Pages/Storypage/Storypage.js";
 import Emailpage from "./Pages/Emailpage/Emailpage.js";
 import Footer from "./Footer/Footer.js";
 import Thank from "./Pages/Thankpage/Thank.js";
+import Modal from "./Pages/Thankpage/Modal";
 
 const App = () => {
   const [hidden, setHidden] = useState(false);
@@ -44,6 +45,7 @@ const App = () => {
 
   let hidePage = () => {
     setHidden(!hidden);
+    console.log("meep");
   };
 
   let content = (
@@ -57,19 +59,52 @@ const App = () => {
           <div className="route-section">
             <Switch>
               <Route exact path="/about">
-                <Navbar />
+                <Navbar setHidden={hidePage} />
                 <About />
                 <Footer />
               </Route>
               <Route exact path="/thank">
-                <Navbar />
+                <Navbar setHidden={hidePage} />
                 <Thank />
                 <Footer />
               </Route>
               <Route exact path="/">
-                <Navbar />
+                <Navbar setHidden={hidePage} />
                 <main>
-                  <section className={"page__container"}>
+                  {hidden && (
+                    <Modal
+                      hide={hidePage}
+                      title="Please note"
+                      style={{
+                        body: {
+                          maxHeight: "500px",
+                          overflowY: "scroll",
+                          opacity: "100 !important",
+                        },
+                        title: {},
+                      }}
+                      body={
+                        <div className="flow">
+                          <p>
+                            Grounded is currently undergoing internal
+                            maintainence as we prepare for a wider launch in
+                            2021. This site is just a copy of the site's
+                            front-end, which was my main contribution to the
+                            project.
+                          </p>
+                          <p>
+                            We hope to branch out and document the stories of
+                            more and more people from all walks of life!
+                          </p>
+                        </div>
+                      }
+                    />
+                  )}
+                  <section
+                    className={
+                      hidden ? "page__container hidden" : "page__container"
+                    }
+                  >
                     <Intropage />
                   </section>
                   <section

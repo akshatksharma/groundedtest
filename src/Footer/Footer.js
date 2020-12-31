@@ -34,7 +34,7 @@ const Footer = () => {
               </a>
             </p>
             <p className="text">
-              <a classname="text" href="tel:314-312-3524">
+              <a className="text" href="tel:314-312-3524">
                 (314) 312-3524
               </a>
             </p>

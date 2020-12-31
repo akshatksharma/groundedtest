@@ -38,6 +38,10 @@ div.transition-group {
   transition: opacity 800ms ease;
 }
 
+.hidden {
+  opacity: 0.5;
+}
+
 input[type="email"],
 input[type="text"] {
   height: 40px;

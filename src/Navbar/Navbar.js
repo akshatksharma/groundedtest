@@ -2,7 +2,7 @@ import React from "react";
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
   let content = (
     <header>
       <nav id="header" className="headerbar bold">
@@ -13,9 +13,18 @@ const Navbar = () => {
         >
           GROUNDED
         </NavLink>
-        <NavLink to="/about" activeClassName="selected">
-          About
-        </NavLink>
+        <div className="headerbar__group">
+          <NavLink to="/about" activeClassName="selected">
+            About
+          </NavLink>
+          <button
+            onClick={() => props.setHidden()}
+            className="headerbar__important"
+            aria-label="Important note"
+          >
+            !
+          </button>
+        </div>
       </nav>
     </header>
   );
